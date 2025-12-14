@@ -73,14 +73,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     // Helper to sync whole subject (Simplest migration strategy)
+    // Helper to sync whole subject (Simplest migration strategy)
     const syncSubject = async (subject: any) => {
         try {
             await fetch(`${API_URL}/subjects/${subject.id}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Bypass-Tunnel-Reminder': 'true'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(subject)
             });
             fetchData(); // Refresh state
@@ -94,10 +92,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             await fetch(`${API_URL}/subjects`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Bypass-Tunnel-Reminder': 'true'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newSubject)
             });
             fetchData();
@@ -253,10 +248,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
                     // So, logic should be: Try PUT. If 404, Try POST.
 
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Bypass-Tunnel-Reminder': 'true'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(subject)
                 });
             }
@@ -284,10 +276,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             const res = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Bypass-Tunnel-Reminder': 'true'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password: pass })
             });
             const data = await res.json();
@@ -311,10 +300,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             const res = await fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Bypass-Tunnel-Reminder': 'true'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password: pass })
             });
             const data = await res.json();
@@ -352,10 +338,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             try {
                 await fetch(`${API_URL}/student/results`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Bypass-Tunnel-Reminder': 'true'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: student.email, result: newResult })
                 });
             } catch (err) {
@@ -377,10 +360,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             await fetch(`${API_URL}/admin/update-passcode`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Bypass-Tunnel-Reminder': 'true'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ newPasscode })
             });
             setAdminPasscode(newPasscode); // Optimistic update usually, but here just sync state
