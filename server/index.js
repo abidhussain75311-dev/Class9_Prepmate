@@ -14,10 +14,16 @@ connectDB();
 
 // Routes
 // We will define these shortly
-app.use('/api/subjects', require('./routes/subjects'));
-app.use('/api/admin', require('./routes/admin'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/student', require('./routes/student'));
+// Routes
+const router = express.Router();
+router.use('/subjects', require('./routes/subjects'));
+router.use('/admin', require('./routes/admin'));
+router.use('/auth', require('./routes/auth'));
+router.use('/student', require('./routes/student'));
+
+// Mount router at both standard API path and Netlify Function path
+app.use('/api', router);
+app.use('/.netlify/functions/api', router);
 
 app.get('/', (req, res) => {
     res.send('PrepMate API is running');
