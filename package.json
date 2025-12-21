@@ -26,7 +26,6 @@
     "recharts": "^3.5.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "serverless-http": "^4.0.0",
     "tailwind-merge": "^3.4.0",
     "vite-plugin-pwa": "^1.2.0"
   },

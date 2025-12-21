@@ -15,15 +15,10 @@ connectDB();
 // Routes
 // We will define these shortly
 // Routes
-const router = express.Router();
-router.use('/subjects', require('./routes/subjects'));
-router.use('/admin', require('./routes/admin'));
-router.use('/auth', require('./routes/auth'));
-router.use('/student', require('./routes/student'));
-
-// Mount router at both standard API path and Netlify Function path
-app.use('/api', router);
-app.use('/.netlify/functions/api', router);
+app.use('/api/subjects', require('./routes/subjects'));
+app.use('/api/admin', require('./routes/admin'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/student', require('./routes/student'));
 
 app.get('/', (req, res) => {
     res.send('PrepMate API is running');
@@ -31,12 +26,6 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Export for Vercel (Serverless)
-module.exports = app;
-
-// Listen only for local development
-if (require.main === module) {
-    app.listen(PORT, () => {
-        console.log(`Server started on port ${PORT}`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
